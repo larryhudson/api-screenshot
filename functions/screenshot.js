@@ -79,24 +79,26 @@ async function screenshot(url, { format, viewport, dpr = 1, withJs = true, wait,
 async function handler(event, context) {
   // e.g. /https%3A%2F%2Fwww.11ty.dev%2F/small/1:1/smaller/
   let pathSplit = event.path.split("/").filter(entry => !!entry);
-  let [url, size, aspectratio, zoom, cachebuster] = pathSplit;
-  let format = "jpeg"; // hardcoded for now, but png and webp are supported!
+  let [name] = pathSplit;
+  let format = "png"; // hardcoded for now, but png and webp are supported!
   let viewport = [];
+
+  let url = `https://acd-what-do-you-think-dev.netlify.app/survey/certificate/?name=${name}`
 
   // Manage your own frequency by using a _ prefix and then a hash buster string after your URL
   // e.g. /https%3A%2F%2Fwww.11ty.dev%2F/_20210802/ and set this to today’s date when you deploy
-  if(size && size.startsWith("_")) {
-    cachebuster = size;
-    size = undefined;
-  }
-  if(aspectratio && aspectratio.startsWith("_")) {
-    cachebuster = aspectratio;
-    aspectratio = undefined;
-  }
-  if(zoom && zoom.startsWith("_")) {
-    cachebuster = zoom;
-    zoom = undefined;
-  }
+  // if(size && size.startsWith("_")) {
+  //   cachebuster = size;
+  //   size = undefined;
+  // }
+  // if(aspectratio && aspectratio.startsWith("_")) {
+  //   cachebuster = aspectratio;
+  //   aspectratio = undefined;
+  // }
+  // if(zoom && zoom.startsWith("_")) {
+  //   cachebuster = zoom;
+  //   zoom = undefined;
+  // }
 
   // Options
   let pathOptions = {};
@@ -178,8 +180,8 @@ async function handler(event, context) {
     }
 
     let output = await screenshot(url, {
-      format,
-      viewport,
+      format: 'png',
+      viewport: [780, 1108],
       dpr,
       wait,
       timeout,
