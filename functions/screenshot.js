@@ -184,7 +184,7 @@ async function handler(event, context) {
 
     let output = await screenshot(url, {
       format: 'png',
-      viewport: [1560, 2216],
+      viewport: [780, 1108],
       dpr,
       wait,
       timeout,
