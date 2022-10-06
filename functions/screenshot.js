@@ -131,13 +131,16 @@ async function handler(event, context) {
   zoom = zoom || "standard";
 
   let dpr;
-  if(zoom === "bigger") {
-    dpr = 1.4;
-  } else if(zoom === "smaller") {
-    dpr = 0.71428571;
-  } else if(zoom === "standard") {
-    dpr = 1;
-  }
+  // if(zoom === "bigger") {
+  //   dpr = 1.4;
+  // } else if(zoom === "smaller") {
+  //   dpr = 0.71428571;
+  // } else if(zoom === "standard") {
+  //   dpr = 1;
+  // }
+
+  // hardcode
+  dpr = 2;
 
   if(size === "small") {
     if(aspectratio === "1:1") {
@@ -181,7 +184,7 @@ async function handler(event, context) {
 
     let output = await screenshot(url, {
       format: 'png',
-      viewport: [780, 1108],
+      viewport: [1560, 2216],
       dpr,
       wait,
       timeout,
